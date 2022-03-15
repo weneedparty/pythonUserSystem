@@ -2,14 +2,32 @@
 name = "pythonUserSystem"
 version = "0.1.0"
 description = ""
-authors = ["yingjie.hu <yingjie.hu@fargowealth.com.hk>"]
+authors = ["yingshaoxo <yingshaoxo@gmail.com>"]
+packages = [
+    { include = "**/*.py" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+fastapi = "^0.75.0"
+uvicorn = "^0.17.6"
+PyJWT = "^2.3.0"
+requests = "^2.27.1"
+SQLAlchemy = "^1.4.31"
+databases = "^0.5.5"
+aiosqlite = "^0.17.0"
+O365 = "^2.0.18"
+redis = "^4.1.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+yapf = "^0.32.0"
+ipykernel = "^6.9.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dev = "src.main:start"
+test = "src.tests.entry:main"
