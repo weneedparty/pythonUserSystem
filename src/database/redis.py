@@ -27,5 +27,5 @@ class MyRedis:
             return True
     
     def delete_all(self):
-        for key in self.redis.keys('prefix:*'):
+        for key in self.redis.keys('*'):
             self.redis.delete(key)
