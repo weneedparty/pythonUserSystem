@@ -38,6 +38,8 @@ async def home():
 @ app.post("/user_register_request/", response_model=models.UserRegisterOutput)
 async def user_register(input: models.UserRegisterInput):
     email = input.email
+    if not utils.check_if_it_is_email(email):
+        return models.UserRegisterOutput.parse_obj({"result": "failed.", "error": "email is not valid."})
 
     randomString = utils.generate_x_random_string(x=6)
     await myAuthClass.add_info_to_unverified_pool(email=email, random_string=randomString)
@@ -84,7 +86,7 @@ def start():
     if port.isdigit():
         port = int(port)
     else:
-        port = 8000
+        port = 40053
 
     while utils.is_port_in_use(port):
         port += 1

@@ -1,5 +1,6 @@
 import random
 import string
+import re
 
 
 def is_port_in_use(port):
@@ -9,6 +10,9 @@ def is_port_in_use(port):
 
 def generate_x_random_string(x: int):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=x))
+
+def check_if_it_is_email(email: str):
+    return re.match(r"[^@]+@[^@]+\.[^@]+", email) is not None
 
 
 class MyO365():
