@@ -49,6 +49,13 @@ class GetDataInput(BaseModel):
 class GetDataOutput(GeneralResponse):
     result: Optional[str] = None
 
+
+class AuthJwtInput(BaseModel):
+    jwt: str
+
+class AuthJwtOutput(GeneralResponse):
+    email: str
+
 # class registerUserOutput(BaseModel):
 #     user_id: Optional[int]
 #     error: Optional[str]

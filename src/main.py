@@ -1,5 +1,6 @@
 from datetime import datetime
 import sys
+import jwt
 import uvicorn
 
 from fastapi import FastAPI
@@ -67,6 +68,18 @@ async def user_register_confirm(input: models.UserRegisterConfirmInput):
         }, 
         "error": None
     })
+
+
+
+@ app.post("/auth_jwt/", response_model=models.AuthJwtOutput)
+async def auth_jwt(input: models.AuthJwtInput):
+    user = await myAuthClass.auth_jwt_string(raw_jwt_string=input.jwt)
+
+    if (user is None):
+        return models.AuthJwtOutput.parse_obj({"email": "", "error": "Invalid JWT."})
+    
+    return models.AuthJwtOutput.parse_obj({"email": user.email, "error": None})
+
 
 
 @ app.post("/get_data/", response_model=models.GetDataOutput)

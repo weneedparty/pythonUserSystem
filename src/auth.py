@@ -40,12 +40,15 @@ class MyAuthClass:
 
     # jwt: JSON Web Token
     async def auth_jwt_string(self, raw_jwt_string) -> Optional[models.User]:
+        # print("the jwt I got: ", raw_jwt_string)
+        
         if not self.regex_validate_for_jwt(raw_jwt_string):
             return None
 
         try: 
             object = self.decode_jwt(raw_jwt_string)
         except Exception as e:
+            print(e)
             return None
 
         email = object.get('email')
