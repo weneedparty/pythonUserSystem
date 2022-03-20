@@ -99,7 +99,7 @@ def start():
     if port.isdigit():
         port = int(port)
     else:
-        port = 40053
+        port = 40052
 
     while utils.is_port_in_use(port):
         port += 1
