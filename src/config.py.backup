@@ -1,0 +1,6 @@
+DATABASE_URL = "sqlite:///data/my_database.db"
+SECRET = "secret"
+
+REDIS_HOST_URL = "localhost"
+
+O365_credentials = ('93f1-cee730a4044b', 'ZZ4mQw4tM6r')

@@ -1,6 +1,5 @@
 from datetime import datetime
 import sys
-import jwt
 import uvicorn
 
 from fastapi import FastAPI
