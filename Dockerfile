@@ -15,7 +15,7 @@ RUN mkdir -p /code/data
 
 COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY o365_token.txt /code
 COPY ./src /code/src
