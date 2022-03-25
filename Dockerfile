@@ -2,7 +2,7 @@ FROM python:3.9 as requirements-stage
 
 WORKDIR /tmp
 
-RUN pip install poetry
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple poetry
 
 COPY ./pyproject.toml ./poetry.lock* /tmp/
 
