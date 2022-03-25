@@ -1,3 +1,4 @@
+
 from datetime import datetime
 import sys
 import uvicorn
@@ -8,6 +9,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from src import config
 from src import utils
 from src import models
+
+
+import os
+redis_NETWORK_NAME = os.getenv("redis_NETWORK_NAME")
+if redis_NETWORK_NAME:
+    config.REDIS_HOST_URL = redis_NETWORK_NAME
+
 
 from src.auth import MyAuthClass
 import src.database.sqlite as sqlite
