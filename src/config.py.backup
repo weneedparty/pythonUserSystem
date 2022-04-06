@@ -4,3 +4,6 @@ SECRET = "secret"
 REDIS_HOST_URL = "localhost"
 
 O365_credentials = ('93f1-cee730a4044b', 'ZZ4mQw4tM6r')
+
+# https://docs.microsoft.com/en-us/graph/auth-v2-user?context=graph%2Fapi%2F1.0&view=graph-rest-1.0#1-register-your-app
+# https://github.com/O365/python-o365/commit/9c5e47d11ac9d058311d3971c19109cf190808ba

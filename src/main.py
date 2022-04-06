@@ -1,5 +1,6 @@
 
 from datetime import datetime
+from socket import timeout
 import sys
 import uvicorn
 
@@ -114,4 +115,4 @@ def start():
     print(f"\n\n\nThe service is running on: http://localhost:{port}\n\n")
 
     uvicorn.run("src.main:app", host="0.0.0.0",
-                port=port, debug=True, reload=True, workers=1)
+                port=port, debug=True, reload=True, workers=8)
