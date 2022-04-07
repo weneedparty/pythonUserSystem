@@ -36,9 +36,30 @@ class MyO365():
         else:
             print('Not Authenticated!')
             raise Exception("Email sender not authenticated!")
+        self.credentials = credentials
 
     def send_email(self, receiver: str, subject: str, body: str):
         m = self.account.new_message()
+        m.to.add(receiver)
+        m.subject = subject
+        m.body = body
+        m.send()
+
+    def send_email2(self, receiver: str, subject: str, body: str):
+        from O365 import Account
+        account = Account(self.credentials)
+        ok = False
+        if not account.is_authenticated:
+            ok = account.authenticate(scopes=['basic', 'message_all'])
+        else:
+            ok = True
+        if ok:
+            print('Authenticated!')
+        else:
+            print('Not Authenticated!')
+            raise Exception("Email sender not authenticated!")
+
+        m = account.new_message()
         m.to.add(receiver)
         m.subject = subject
         m.body = body
