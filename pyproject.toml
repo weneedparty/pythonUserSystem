@@ -18,6 +18,7 @@ databases = "^0.5.5"
 aiosqlite = "^0.17.0"
 O365 = "^2.0.18"
 redis = "^4.1.4"
+func-timeout = "^4.3.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

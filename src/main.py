@@ -7,6 +7,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from func_timeout import func_timeout, FunctionTimedOut
+
 from src import config
 from src import utils
 from src import models
@@ -53,7 +55,15 @@ async def user_register(input: models.UserRegisterInput):
     randomString = utils.generate_x_random_number_string(x=6)
     await myAuthClass.add_info_to_unverified_pool(email=email, random_string=randomString)
 
-    myO365.send_email2(email, "Thanks for register WeLoveParty App", "Here is your verification code: " + randomString)
+    try:
+        func_timeout(5, myO365.send_email2, args=(email, "Thanks for register WeLoveParty App", "Here is your verification code: " + randomString))
+    except FunctionTimedOut:
+        print(f"Sening email to {email} timeout!")
+    except Exception as e:
+        # Handle any exceptions that doit might raise here
+        print(e)
+
+    # myO365.send_email2(email, "Thanks for register WeLoveParty App", "Here is your verification code: " + randomString)
 
     return models.UserRegisterOutput.parse_obj({"result": "success.", "error": None})
 
