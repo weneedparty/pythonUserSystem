@@ -59,9 +59,11 @@ async def user_register(input: models.UserRegisterInput):
         func_timeout(5, myO365.send_email2, args=(email, "Thanks for register WeLoveParty App", "Here is your verification code: " + randomString))
     except FunctionTimedOut:
         print(f"Sening email to {email} timeout!")
+        return models.UserRegisterOutput.parse_obj({"result": "failed.", "error": "can't send email."})
     except Exception as e:
         # Handle any exceptions that doit might raise here
         print(e)
+        return models.UserRegisterOutput.parse_obj({"result": "failed.", "error": "can't send email."})
 
     # myO365.send_email2(email, "Thanks for register WeLoveParty App", "Here is your verification code: " + randomString)
 
